@@ -6,7 +6,7 @@ import DomainModal from './components/DomainModal';
 import ImportModal from './components/ImportModal';
 import ConfirmModal from './components/ConfirmModal';
 import { updateAllDomains } from './services/whoisService';
-import { Plus, Search, LayoutGrid, BarChart2, CheckCircle, Clock, RefreshCw, Github, ArrowUp } from 'lucide-react';
+import { Plus, Search, LayoutGrid, BarChart2, CheckCircle, Clock, RefreshCw, Github, ArrowUp, ChevronDown } from 'lucide-react';
 
 const App: React.FC = () => {
   const [domains, setDomains] = useState<Domain[]>([]);
@@ -194,18 +194,21 @@ const App: React.FC = () => {
                 className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <select
-              aria-label="Filter by status"
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value as DomainStatus | 'ALL')}
-              className="px-3 py-2 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="ALL">所有状态</option>
-              <option value={DomainStatus.OWNED}>已拥有</option>
-              <option value={DomainStatus.BACKORDER}>抢注中</option>
-              <option value={DomainStatus.WATCHLIST}>关注列表</option>
-              <option value={DomainStatus.EXPIRED}>已过期</option>
-            </select>
+              <div className="relative">
+              <select
+                aria-label="Filter by status"
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value as DomainStatus | 'ALL')}
+                className="appearance-none pl-3 pr-8 py-2 bg-white border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="ALL">所有状态</option>
+                <option value={DomainStatus.OWNED}>已拥有</option>
+                <option value={DomainStatus.BACKORDER}>抢注中</option>
+                <option value={DomainStatus.WATCHLIST}>关注列表</option>
+                <option value={DomainStatus.EXPIRED}>已过期</option>
+              </select>
+              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+            </div>
           </div>
           
           <div className="flex items-center gap-3 w-full sm:w-auto">
